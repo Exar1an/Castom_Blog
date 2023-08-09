@@ -8,8 +8,8 @@ async function start() {
     const app = await NestFactory.create(AppModule)
 
     const config = new DocumentBuilder()
-        .setTitle('Nest Base')
-        .setDescription('Разборки с нестом перед проектом.')
+        .setTitle('Custom Blog')
+        .setDescription('Blog2000')
         .setVersion('1.0.0')
         .addTag('Exarian')
         .build()
