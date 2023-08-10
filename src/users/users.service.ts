@@ -55,6 +55,11 @@ export class UsersService {
 
     async ban(dto: BanUserDto) {
         const user = await this.userRepository.findByPk(dto.userId);
+
+        if(!user) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND)
+        }
+
         const roles = await this.roleService.getUserRoles(user.id)
         const isModerator = roles.some(role => role.roleId === 1); // role number 1 is moderator
         //You can replace it more grammatically, but so as not to linger now until it is so
