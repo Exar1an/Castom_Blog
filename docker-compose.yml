@@ -19,16 +19,26 @@ services:
     restart: always
   postgres:
     container_name: postgres
-    image: postgres:15.3-alpine
+    image: postgres:15
     env_file:
       - .development.env
     environment:
       PG_DATA: /var/lib/postgresql/data
     ports:
-      - 5433:5433
+      - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always
-
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=12345
+    ports:
+      - '5050:80'
+    depends_on:
+      - postgres
 volumes:
   pgdata:
