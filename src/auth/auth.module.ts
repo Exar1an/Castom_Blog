@@ -4,12 +4,14 @@ import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { forwardRef } from '@nestjs/common/utils';
+import { RolesModule } from '../roles/roles.module';
 
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
   imports: [
     forwardRef(() => UsersModule),
+    forwardRef(() => RolesModule),
     JwtModule.register({
       secret: process.env.PRIVATE_KEY || "SECRET",
       signOptions: {

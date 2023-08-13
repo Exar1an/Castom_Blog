@@ -15,12 +15,10 @@ export class SeedsService {
     async createDefaultSeeds() {
         const defaultRoles = [
             {
-                id: 1,
                 value: 'Moderator',
                 description: 'Moder',
             },
             {
-                id: 2,
                 value: 'Writer',
                 description: 'Default user',
             },
