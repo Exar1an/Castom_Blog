@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SeedsService } from './seeds.service';
 
 @ApiTags('Seeds')
@@ -7,6 +7,8 @@ import { SeedsService } from './seeds.service';
 export class SeedsController {
     constructor(private seedsService: SeedsService) { }
 
+    @ApiOperation({summary: 'Create default roles and admin.'})
+    @ApiResponse({status: 201})
     @Post()
     createDefaultSeeds() {
         return this.seedsService.createDefaultSeeds();
