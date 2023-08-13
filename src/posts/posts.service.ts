@@ -16,4 +16,6 @@ export class PostService {
         const post = await this.postRepository.create({ ...dto, image: fileName })
         return post
     }
+
+    // async delete()
 }
