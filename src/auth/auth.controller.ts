@@ -20,3 +20,6 @@ export class AuthController {
     }
 
 }
+
+const aw =3;
+const qeq =1
