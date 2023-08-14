@@ -6,7 +6,5 @@ export class CreatePostDto {
     readonly title: string;
     @ApiProperty({ example: 'Tell me what ways you found the strength to learn js?', description: 'Text' })
     readonly content: string;
-    @ApiProperty({ example: 1, description: 'user id' })
-    readonly userId: number;
-    
+
 }
