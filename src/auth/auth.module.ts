@@ -5,6 +5,7 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { forwardRef } from '@nestjs/common/utils';
 import { RolesModule } from '../roles/roles.module';
+import { PostModule } from '../posts/posts.module';
 
 @Module({
   controllers: [AuthController],
@@ -12,6 +13,7 @@ import { RolesModule } from '../roles/roles.module';
   imports: [
     forwardRef(() => UsersModule),
     forwardRef(() => RolesModule),
+    forwardRef(() => PostModule),
     JwtModule.register({
       secret: process.env.PRIVATE_KEY || "SECRET",
       signOptions: {
