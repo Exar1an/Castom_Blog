@@ -26,6 +26,8 @@ export class PostController {
         res.send(response)
     }
 
+//TODO must be get controller
+
     @Patch('/:id')
     @UseGuards(JwtAuthGuard)
     async updatePost(
