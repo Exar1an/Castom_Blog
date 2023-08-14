@@ -1,20 +1,18 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Role } from "../roles/roles.model";
 import { UserRoles } from "../roles/user-roles.model";
 import { User } from "../users/users.model";
-import { Blog } from "../blogs/blogs.model";
+import { Post } from "../posts/posts.model";
 
-interface PostCreationAttrs {
+interface BlogCreationAttrs {
     title: string;
     content: string;
-    userId: number;
-    image: string;
 }
 
 
-@Table({tableName: 'posts'})
-export class Post extends Model<Post, PostCreationAttrs> {
+@Table({tableName: 'blogs'})
+export class Blog extends Model<Blog, BlogCreationAttrs> {
 
     @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
@@ -25,21 +23,14 @@ export class Post extends Model<Post, PostCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: false})
     content: string;
 
-    @Column({type: DataType.STRING})
-    image: string;
-
     @ForeignKey(() => User)
     @Column({type: DataType.INTEGER})
     userId: number;
 
-    @ForeignKey(() => Blog)
-    @Column({type: DataType.INTEGER})
-    blogId: number;
-
+    @HasMany(() => Post)
+    posts: Post[];
+    
     @BelongsTo(() => User)
     author: User
-
-    @BelongsTo(() => User)
-    blog: Blog
 
 }

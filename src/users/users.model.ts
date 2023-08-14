@@ -3,6 +3,7 @@ import { BelongsToMany, Column, DataType, HasMany, Model, Table } from "sequeliz
 import { Role } from "../roles/roles.model";
 import { UserRoles } from "../roles/user-roles.model";
 import { Post } from "../posts/posts.model";
+import { Blog } from "../blogs/blogs.model";
 
 
 interface UserCreationAttrs {
@@ -38,4 +39,7 @@ export class User extends Model<User, UserCreationAttrs> {
     
     @HasMany(() => Post)
     posts: Post[]
+
+    @HasMany(() => Blog)
+    blogs: Blog[]
 }

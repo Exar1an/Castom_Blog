@@ -54,22 +54,30 @@ export class UsersService {
     };
 
     async ban(dto: BanUserDto) {
-        const user = await this.userRepository.findByPk(dto.userId);
+        const user = await this.userRepository.findOne({
+            where: {
+                id: dto.userId
+            },
+            include: {
+                all: true
+            }
+        });
 
         if(!user) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND)
         }
 
-        const roles = await this.roleService.getUserRoles(user.id)
-        const isModerator = roles.some(role => role.roleId === 1); // role number 1 is moderator
-        //You can replace it more grammatically, but so as not to linger now until it is so
+        const roleValue = user.roles.map(({ value }) => value);
+        const isModerator = roleValue.includes('Moderator'); 
+
         if (isModerator) {
             throw new HttpException('No access to ban', HttpStatus.FORBIDDEN)
         }
         user.banned = true;
         user.banReason = dto.banReason;
         await user.save();
-        return user;
+        return new HttpException('Banned', HttpStatus.OK);
+        
     }
 
 
