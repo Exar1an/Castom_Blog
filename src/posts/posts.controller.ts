@@ -37,7 +37,6 @@ export class PostController {
     ) {
         const { userId } = res.locals
         const { roles } = res.locals
-        console.log(roles)
         const response = await this.postService.update(id, dto, userId, roles);
         res.send(response);
     }

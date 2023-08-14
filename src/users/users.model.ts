@@ -9,6 +9,8 @@ import { Blog } from "../blogs/blogs.model";
 interface UserCreationAttrs {
     email: string;
     password: string;
+    firstName: string;
+    lastName: string;
 }
 
 
@@ -25,6 +27,14 @@ export class User extends Model<User, UserCreationAttrs> {
     @ApiProperty({example: 'qwerty123Q', description: 'Password.'})
     @Column({type: DataType.STRING, allowNull: false})
     password: string;
+
+    @ApiProperty({example: 'Zhora', description: 'first name'})
+    @Column({type: DataType.STRING, allowNull: false})
+    firstName: string;
+
+    @ApiProperty({example: 'Zhora', description: 'first name'})
+    @Column({type: DataType.STRING, allowNull: false})
+    lastName: string;
 
     @ApiProperty({example: 'true', description: 'Ban or not.'})
     @Column({type: DataType.BOOLEAN, defaultValue: false})
