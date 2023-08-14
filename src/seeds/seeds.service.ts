@@ -43,13 +43,15 @@ export class SeedsService {
 
         const mockEmail = "moderator@gmail.com"
         const hashPassword = await bcrypt.hash("qwerty123", 5)
+        const mockFirstName = 'Jhon';
+        const mockLastName = 'Dou'
 
         const checkFirstmoderator = await this.userRepository.findOne({
             where: { email: mockEmail }
         })
 
         if (!checkFirstmoderator) {
-            const moderator = await this.userRepository.create({ email: mockEmail, password: hashPassword })
+            const moderator = await this.userRepository.create({ email: mockEmail, password: hashPassword, firstName: mockFirstName, lastName: mockLastName })
             const role = await this.roleService.getRoleByValue('Moderator')
             await moderator.$set('roles', [role.id])
             moderator.roles = [role]
