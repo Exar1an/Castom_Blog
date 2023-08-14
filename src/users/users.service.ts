@@ -77,6 +77,7 @@ export class UsersService {
         user.banReason = dto.banReason;
         await user.save();
         return new HttpException('Banned', HttpStatus.OK);
+        
     }
 
 
