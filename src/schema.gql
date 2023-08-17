@@ -15,4 +15,37 @@ type UserModel {
 type Query {
   user(email: String!): UserModel
   allusers: [UserModel!]
+  createDefaultSeeds: Boolean
+}
+
+type Mutation {
+  create(createUserData: CreateUserInput!): UserModel!
+  update(updateUserData: UpdateUserInput!, id: Int!): UserModel!
+  addRole(addRoleData: AddRoleInput!): Boolean!
+  ban(banUserData: BanUserInput!): UserModel!
+  delete(id: Int!): Boolean!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}
+
+input UpdateUserInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}
+
+input AddRoleInput {
+  value: String!
+  userId: Float!
+}
+
+input BanUserInput {
+  userId: Float!
+  banReason: String!
 }
