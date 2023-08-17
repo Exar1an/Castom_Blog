@@ -7,3 +7,5 @@ export const UserId = createParamDecorator(
     return ctx.getContext().req.user.id;
   },
 );
+
+// guide to use @UserId() userId: number

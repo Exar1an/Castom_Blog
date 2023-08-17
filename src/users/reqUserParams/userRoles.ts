@@ -8,3 +8,5 @@ export const UserRolesParam = createParamDecorator(
     return roles
   },
 );
+
+//guide to use @UserRolesParam() roles: []
