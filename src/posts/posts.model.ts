@@ -1,7 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { Role } from "../roles/roles.model";
-import { UserRoles } from "../roles/user-roles.model";
 import { User } from "../users/users.model";
 import { Blog } from "../blogs/blogs.model";
 
@@ -9,6 +6,7 @@ interface PostCreationAttrs {
     title: string;
     content: string;
     userId: number;
+    blogId: number;
     image: string;
 }
 
@@ -39,7 +37,7 @@ export class Post extends Model<Post, PostCreationAttrs> {
     @BelongsTo(() => User)
     author: User
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => Blog)
     blog: Blog
 
 }

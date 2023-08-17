@@ -1,0 +1,18 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserModel {
+  id: Float!
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  banned: Boolean!
+  banReason: String!
+}
+
+type Query {
+  user(email: String!): UserModel
+  allusers: [UserModel!]
+}

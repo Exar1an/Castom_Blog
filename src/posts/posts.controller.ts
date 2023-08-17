@@ -10,7 +10,7 @@ import { Response, response } from 'express';
 
 
 @ApiTags('Posts')
-@Controller('posts')
+@Controller()
 export class PostController {
 
     constructor(private postService: PostService) { }
@@ -20,9 +20,10 @@ export class PostController {
     @UseInterceptors(FileInterceptor('image'))
     async createPost(@Body() dto: CreatePostDto,
         @Res() res: Response,
+        @Param('blogId') blogId: number,
         @UploadedFile() image) {
         const { userId } = res.locals
-        const response = await this.postService.create(dto, image, userId)
+        const response = await this.postService.create(dto, image, userId, blogId)
         res.send(response)
     }
 
