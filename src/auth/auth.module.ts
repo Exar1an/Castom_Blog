@@ -6,14 +6,17 @@ import { JwtModule } from '@nestjs/jwt';
 import { forwardRef } from '@nestjs/common/utils';
 import { RolesModule } from '../roles/roles.module';
 import { PostModule } from '../posts/posts.module';
+import { BlogsModule } from '../blogs/blogs.module';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, AuthResolver],
   imports: [
     forwardRef(() => UsersModule),
     forwardRef(() => RolesModule),
     forwardRef(() => PostModule),
+    forwardRef(() => BlogsModule),
     JwtModule.register({
       secret: process.env.PRIVATE_KEY || "SECRET",
       signOptions: {
@@ -23,6 +26,7 @@ import { PostModule } from '../posts/posts.module';
   ],
   exports: [
     AuthService,
+    AuthResolver,
     JwtModule
   ]
 })
