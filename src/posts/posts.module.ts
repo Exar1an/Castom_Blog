@@ -7,14 +7,16 @@ import { Post } from './posts.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { FilesModule } from '../files/files.module';
 import { AuthModule } from '../auth/auth.module';
+import { Blog } from '../blogs/blogs.model';
+import { BlogsModule } from '../blogs/blogs.module';
 
 @Module({
     providers: [PostService],
     controllers: [PostController],
     imports: [
-        SequelizeModule.forFeature([User, Post]),
+        SequelizeModule.forFeature([User, Post, Blog]),
         FilesModule,
-        forwardRef(() => AuthModule)
+        forwardRef(() => AuthModule),
     ],
     exports: [
         PostService

@@ -5,7 +5,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { RolesService } from '../roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
 import { BanUserDto } from './dto/ban-user.dto';
-import { UserRoles } from '../roles/user-roles.model';
 import * as bcrypt from 'bcryptjs'
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesValue } from '../posts/posts.service';
@@ -36,7 +35,7 @@ export class UsersService {
         return users;
     }
 
-    async getUserByEmail(email: string) {
+    async getUserByEmail(email: string): Promise<User> {
         const user = await this.userRepository.findOne({
             where: {
                 email

@@ -9,7 +9,6 @@ interface RoleCreationAttrs {
     description: string;
 }
 
-
 @Table({tableName: 'roles'})
 export class Role extends Model<Role> {
 

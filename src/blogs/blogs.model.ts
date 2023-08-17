@@ -1,13 +1,11 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
-import { Role } from "../roles/roles.model";
-import { UserRoles } from "../roles/user-roles.model";
 import { User } from "../users/users.model";
 import { Post } from "../posts/posts.model";
 
 interface BlogCreationAttrs {
     title: string;
     content: string;
+    userId: number;
 }
 
 

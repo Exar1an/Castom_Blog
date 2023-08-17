@@ -6,13 +6,13 @@ import { Post } from "../posts/posts.model";
 import { Blog } from "../blogs/blogs.model";
 
 
+
 interface UserCreationAttrs {
     email: string;
     password: string;
     firstName: string;
     lastName: string;
 }
-
 
 @Table({tableName: 'users'})
 export class User extends Model<User, UserCreationAttrs> {

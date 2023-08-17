@@ -43,8 +43,8 @@ export class SeedsService {
 
         const mockEmail = "moderator@gmail.com"
         const hashPassword = await bcrypt.hash("qwerty123", 5)
-        const mockFirstName = 'Jhon';
-        const mockLastName = 'Dou'
+        const mockFirstName = 'Jorno';
+        const mockLastName = 'Jovanna'
 
         const checkFirstmoderator = await this.userRepository.findOne({
             where: { email: mockEmail }
