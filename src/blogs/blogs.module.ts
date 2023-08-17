@@ -17,7 +17,7 @@ import { FilesModule } from '../files/files.module';
   imports: [
     SequelizeModule.forFeature([User, Post, Blog]),
     forwardRef(() => AuthModule),
-    PostModule,
+    forwardRef(() => PostModule),
     FilesModule
 ],
 exports: [

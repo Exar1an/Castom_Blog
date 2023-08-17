@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type RoleModel {
+  id: Float!
+  value: String!
+  description: String!
+}
+
 type UserModel {
   id: Float!
   email: String!
@@ -10,11 +16,27 @@ type UserModel {
   lastName: String!
   banned: Boolean!
   banReason: String!
+  roles: [RoleModel!]!
+  posts: [PostModel!]!
+}
+
+type PostModel {
+  id: Float!
+  title: String!
+  content: String!
+  image: String!
+  userId: Float!
+  blogId: Float!
+  author: UserModel!
 }
 
 type Query {
   user(email: String!): UserModel
   allusers: [UserModel!]
+  getRole(value: String!): RoleModel!
+  getAllRoles: [RoleModel!]!
+  getPost(id: Float!): PostModel!
+  getBlogPosts(id: Float!): [PostModel!]!
   createDefaultSeeds: Boolean
 }
 
@@ -24,6 +46,10 @@ type Mutation {
   addRole(addRoleData: AddRoleInput!): Boolean!
   ban(banUserData: BanUserInput!): UserModel!
   delete(id: Int!): Boolean!
+  createRole(createRoleData: CreateRoleInput!): RoleModel!
+  createPost(createPostData: CreatePostInput!, blogId: Float!): PostModel!
+  updatePost(id: Float!, updateTitle: UpdateTitleInput!, updateContent: UpdateContentInput!): PostModel!
+  deletePost(id: Float!): Boolean!
 }
 
 input CreateUserInput {
@@ -48,4 +74,22 @@ input AddRoleInput {
 input BanUserInput {
   userId: Float!
   banReason: String!
+}
+
+input CreateRoleInput {
+  value: String!
+  description: String!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+
+input UpdateTitleInput {
+  title: String!
+}
+
+input UpdateContentInput {
+  content: String!
 }
