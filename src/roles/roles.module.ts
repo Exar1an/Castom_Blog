@@ -7,10 +7,11 @@ import { User } from '../users/users.model';
 import { UserRoles } from './user-roles.model';
 import { AuthModule } from '../auth/auth.module';
 import { forwardRef } from '@nestjs/common/utils';
+import { RolesResolver } from './roles.resolver';
 
 
 @Module({
-  providers: [RolesService],
+  providers: [RolesService, RolesResolver],
   controllers: [RolesController],
   imports: [
     SequelizeModule.forFeature([Role, User, UserRoles]),

@@ -5,6 +5,7 @@ import { Post } from './posts.model';
 import { FilesService } from 'src/files/files.service';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Role } from 'src/roles/roles.model';
+import { BlogsService } from '../blogs/blogs.service';
 
 export type RolesValue = string[]
 
@@ -12,10 +13,40 @@ export type RolesValue = string[]
 export class PostService {
 
     constructor(@InjectModel(Post) private postRepository: typeof Post,
-        private fileService: FilesService) { }
+        private fileService: FilesService,
+        private blogService: BlogsService) { }
 
+
+    async getPostById(id: number) {
+      const post = await this.postRepository.findByPk(id)
+      if(!post){
+        throw new NotFoundException(`Post with id ${id} not found`)
+      }
+      return post
+    }
+
+    async getBlogPosts(id: number) {
+      const posts = await this.postRepository.findAll({
+        where: {
+          blogId: id
+        }
+      })
+      if(posts.length === 0){
+        throw new NotFoundException(`Blog with id ${id} not found`)
+      }
+      return posts
+    }
 
     async create(dto: CreatePostDto, image: any, userId: number, blogId: number) {
+        const blog = await this.blogService.getBlogById(blogId)
+        if(!blog) {
+          throw new NotFoundException(`Blog with id ${blogId} not found`)
+        }
+
+        if(image === 'coming soon'){
+          const post = await this.postRepository.create({ ...dto, image, userId, blogId })
+          return post
+        }
         const fileName = await this.fileService.createFile(image);
         const post = await this.postRepository.create({ ...dto, image: fileName, userId, blogId })
         return post
