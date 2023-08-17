@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt/dist';
 import * as bcrypt from 'bcryptjs'
 import { User } from '../users/users.model';
 import { RegistrationUserDto } from './dto/reg-user.dto';
+import { LoginUserDto } from './dto/log-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
     constructor(private userService: UsersService,
         private jwtService: JwtService){}
 
-    async login(userDto: RegistrationUserDto){
+    async login(userDto: LoginUserDto){
         const user = await this.validateUser(userDto)
         return this.generateToken(user)
     }
@@ -19,10 +20,10 @@ export class AuthService {
     async registration(userDto: RegistrationUserDto){
         const candidate = await this.userService.getUserByEmail(userDto.email);
         if(candidate) {
-            throw new HttpException('User with such email is not found', HttpStatus.BAD_REQUEST)
+            throw new HttpException('User with such email already exist', HttpStatus.BAD_REQUEST)
         }
         const hashPassword = await bcrypt.hash(userDto.password, 5);
-        const user = await this.userService.createUser({...userDto, password: hashPassword, firstName: '1', lastName: '2'});
+        const user = await this.userService.createUserByReg({...userDto, password: hashPassword, firstName: 'name', lastName: 'second name'});
         return this.generateToken(user)
     }
 

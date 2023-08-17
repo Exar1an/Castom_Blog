@@ -30,6 +30,10 @@ type PostModel {
   author: UserModel!
 }
 
+type TokenModel {
+  token: String!
+}
+
 type Query {
   user(email: String!): UserModel
   allusers: [UserModel!]
@@ -47,6 +51,8 @@ type Mutation {
   ban(banUserData: BanUserInput!): UserModel!
   delete(id: Int!): Boolean!
   createRole(createRoleData: CreateRoleInput!): RoleModel!
+  registration(regUserData: RegUserInput!): TokenModel!
+  login(loginUserData: LoginUserInput!): TokenModel!
   createPost(createPostData: CreatePostInput!, blogId: Float!): PostModel!
   updatePost(id: Float!, updateTitle: UpdateTitleInput!, updateContent: UpdateContentInput!): PostModel!
   deletePost(id: Float!): Boolean!
@@ -79,6 +85,16 @@ input BanUserInput {
 input CreateRoleInput {
   value: String!
   description: String!
+}
+
+input RegUserInput {
+  email: String!
+  password: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
 
 input CreatePostInput {
