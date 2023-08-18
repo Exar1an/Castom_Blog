@@ -4,7 +4,6 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './posts.model';
 import { FilesService } from 'src/files/files.service';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { Role } from 'src/roles/roles.model';
 import { BlogsService } from '../blogs/blogs.service';
 
 export type RolesValue = string[]

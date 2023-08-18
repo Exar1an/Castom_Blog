@@ -1,6 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { UserModel } from 'src/users/dtoQL/user-model';
-import { User } from 'src/users/users.model';
+import { BlogModel } from 'src/blogs/dtoQL/blog-model';
 
 
 @ObjectType()
@@ -23,10 +22,7 @@ export class PostModel {
     @Field()
     blogId: number;
 
-    @Field(() => UserModel)
-    author: UserModel
-
-    // @Field()
-    // blog: Blog
+    @Field(() => BlogModel)
+    blog: BlogModel
 
 }

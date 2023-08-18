@@ -1,8 +1,8 @@
 import { Body, Controller, Post, Param, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { Req, Res, UseGuards, UsePipes } from '@nestjs/common/decorators';
-import { Response, response } from 'express';
+import { Res, UseGuards } from '@nestjs/common/decorators';
+import { Response } from 'express';
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 

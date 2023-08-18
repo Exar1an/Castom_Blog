@@ -5,8 +5,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { Req, Res, UseGuards, UsePipes } from '@nestjs/common/decorators';
-import { Response, response } from 'express';
+import { Res, UseGuards } from '@nestjs/common/decorators';
+import { Response } from 'express';
 
 
 @ApiTags('Posts')
