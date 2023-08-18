@@ -1,5 +1,5 @@
 import { Resolver, Args, Mutation, Query } from '@nestjs/graphql';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
 import { UserId } from '../users/reqUserParams/userId';
 import { BlogModel } from './dtoQL/blog-model';

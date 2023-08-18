@@ -1,5 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { PostModel } from 'src/posts/dtoQL/posts-model';
+import { PostModel } from '../../posts/dtoQL/posts-model';
 
 
 @ObjectType()

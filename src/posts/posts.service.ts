@@ -2,7 +2,7 @@ import { Injectable, HttpException, HttpStatus, NotFoundException, ForbiddenExce
 import { CreatePostDto } from './dto/create-post.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './posts.model';
-import { FilesService } from 'src/files/files.service';
+import { FilesService } from '../files/files.service';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { BlogsService } from '../blogs/blogs.service';
 

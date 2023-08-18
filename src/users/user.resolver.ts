@@ -1,6 +1,6 @@
 import { Resolver, Args, Mutation, Query, Context, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Roles } from '../auth/roles-auth.decorator';
 import { RolesGuard } from '../auth/roles.guard';
 import { UseGuards } from '@nestjs/common/decorators';

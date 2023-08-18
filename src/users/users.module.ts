@@ -6,7 +6,7 @@ import { User } from './users.model';
 import { Role } from '../roles/roles.model';
 import { UserRoles } from '../roles/user-roles.model';
 import { RolesModule } from '../roles/roles.module';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
 import { forwardRef } from '@nestjs/common/utils';
 import { Post } from '../posts/posts.model';
 import { Blog } from '../blogs/blogs.model';

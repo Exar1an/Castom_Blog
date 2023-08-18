@@ -1,7 +1,7 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { RoleModel } from 'src/roles/dtoQL/roles-model';
-import { PostModel } from 'src/posts/dtoQL/posts-model';
-import { BlogModel } from 'src/blogs/dtoQL/blog-model';
+import { RoleModel } from '../..//roles/dtoQL/roles-model';
+import { PostModel } from '../../posts/dtoQL/posts-model';
+import { BlogModel } from '../../blogs/dtoQL/blog-model';
 
 
 @ObjectType()

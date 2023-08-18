@@ -1,5 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { BlogModel } from 'src/blogs/dtoQL/blog-model';
+import { BlogModel } from '../../blogs/dtoQL/blog-model';
 
 
 @ObjectType()
