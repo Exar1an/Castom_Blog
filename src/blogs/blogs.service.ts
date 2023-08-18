@@ -9,8 +9,7 @@ import { RolesValue } from '../posts/posts.service';
 
 @Injectable()
 export class BlogsService {
-    constructor(@InjectModel(Blog) private blogsRepository: typeof Blog,
-        private fileService: FilesService) { }
+    constructor(@InjectModel(Blog) private blogsRepository: typeof Blog) { }
 
     async get(){
         const getAllBlogs = await this.blogsRepository.findAll({
