@@ -10,7 +10,6 @@ import { AuthModule } from '../auth/auth.module';
 import { Blog } from '../blogs/blogs.model';
 import { BlogsModule } from '../blogs/blogs.module';
 import { PostsResolver } from './posts.resolver';
-import { BlogsService } from '../blogs/blogs.service';
 
 @Module({
     providers: [PostService, PostsResolver],

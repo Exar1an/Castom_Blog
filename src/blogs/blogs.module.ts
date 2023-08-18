@@ -9,11 +9,12 @@ import { AuthModule } from '../auth/auth.module';
 import { PostModule } from '../posts/posts.module';
 import { Blog } from './blogs.model';
 import { FilesModule } from '../files/files.module';
+import { BlogsResolver } from './blogs.resolver';
 
 
 @Module({
   controllers: [BlogsController],
-  providers: [BlogsService],
+  providers: [BlogsService, BlogsResolver],
   imports: [
     SequelizeModule.forFeature([User, Post, Blog]),
     forwardRef(() => AuthModule),

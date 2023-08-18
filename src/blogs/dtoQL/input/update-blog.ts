@@ -1,17 +1,17 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString, Length } from "class-validator";
 
 @InputType()
-export class CreatePostInput {
+export class UpdateBlogInput {
 
     @Field()
     @IsNotEmpty()
     @IsString({ message: "Must be string" })
-    title: string;
+    readonly title: string;
 
     @Field()
     @IsNotEmpty()
     @IsString({ message: "Must be string" })
-    content: string
+    readonly content: string;
 
 }

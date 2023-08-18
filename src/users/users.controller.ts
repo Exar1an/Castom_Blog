@@ -4,7 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './users.model';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { UseGuards, UsePipes, Res, Param } from '@nestjs/common/decorators';
+import { UseGuards, Res, Param } from '@nestjs/common/decorators';
 import { Roles } from '../auth/roles-auth.decorator';
 import { RolesGuard } from '../auth/roles.guard';
 import { AddRoleDto } from './dto/add-role.dto';

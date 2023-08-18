@@ -2,6 +2,28 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PostModel {
+  id: Float!
+  title: String!
+  content: String!
+  image: String!
+  userId: Float!
+  blogId: Float!
+  blog: BlogModel!
+}
+
+type BlogModel {
+  id: Float!
+  title: String!
+  content: String!
+  userId: Float!
+  posts: [PostModel!]!
+}
+
+type TokenModel {
+  token: String!
+}
+
 type RoleModel {
   id: Float!
   value: String!
@@ -18,20 +40,7 @@ type UserModel {
   banReason: String!
   roles: [RoleModel!]!
   posts: [PostModel!]!
-}
-
-type PostModel {
-  id: Float!
-  title: String!
-  content: String!
-  image: String!
-  userId: Float!
-  blogId: Float!
-  author: UserModel!
-}
-
-type TokenModel {
-  token: String!
+  blogs: [BlogModel!]!
 }
 
 type Query {
@@ -41,6 +50,9 @@ type Query {
   getAllRoles: [RoleModel!]!
   getPost(id: Float!): PostModel!
   getBlogPosts(id: Float!): [PostModel!]!
+  getBlogById(id: Float!): BlogModel!
+  getAllBlogs: [BlogModel!]!
+  getUserBlogsByUserId(id: Float!): [BlogModel!]!
   createDefaultSeeds: Boolean
 }
 
@@ -56,6 +68,9 @@ type Mutation {
   createPost(createPostData: CreatePostInput!, blogId: Float!): PostModel!
   updatePost(id: Float!, updateTitle: UpdateTitleInput!, updateContent: UpdateContentInput!): PostModel!
   deletePost(id: Float!): Boolean!
+  createBlog(createBlogData: CreateBlogInput!): BlogModel!
+  updateBlog(id: Float!, updateBlogData: UpdateBlogInput!): BlogModel!
+  deleteBlog(id: Float!): Boolean!
 }
 
 input CreateUserInput {
@@ -107,5 +122,15 @@ input UpdateTitleInput {
 }
 
 input UpdateContentInput {
+  content: String!
+}
+
+input CreateBlogInput {
+  title: String!
+  content: String!
+}
+
+input UpdateBlogInput {
+  title: String!
   content: String!
 }

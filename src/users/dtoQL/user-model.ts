@@ -1,9 +1,7 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Blog } from '../../blogs/blogs.model';
-import { Post } from '../../posts/posts.model';
-import { Role } from '../../roles/roles.model';
 import { RoleModel } from 'src/roles/dtoQL/roles-model';
 import { PostModel } from 'src/posts/dtoQL/posts-model';
+import { BlogModel } from 'src/blogs/dtoQL/blog-model';
 
 
 @ObjectType()
@@ -35,6 +33,6 @@ export class UserModel {
     @Field(() => [PostModel])
     posts: PostModel[]
 
-    // @Field(() => [Blog])
-    // blogs: Blog[]
+    @Field(() => [BlogModel])
+    blogs: BlogModel[]
 }

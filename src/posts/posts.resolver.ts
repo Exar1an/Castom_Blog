@@ -1,9 +1,6 @@
 import { Resolver, Args, Mutation, Query, Context, Int } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Roles } from '../auth/roles-auth.decorator';
-import { RolesGuard } from '../auth/roles.guard';
-import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { UseGuards } from '@nestjs/common/decorators';
 import { UserId } from 'src/users/reqUserParams/userId';
 import { PostModel } from './dtoQL/posts-model';
 import { PostService } from './posts.service';
