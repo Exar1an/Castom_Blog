@@ -6,7 +6,7 @@ import { Role } from '../roles/roles.model';
 import { User } from '../users/users.model';
 import { UserRoles } from '../roles/user-roles.model';
 import { Post } from '../posts/posts.model';
-import { RolesModule } from 'src/roles/roles.module';
+import { RolesModule } from '../roles/roles.module';
 import { SeedsResolver } from './seeds.resolver';
 
 @Module({

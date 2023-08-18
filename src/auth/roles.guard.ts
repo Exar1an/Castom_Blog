@@ -5,7 +5,7 @@ import { Observable } from 'rxjs'
 import { ROLES_KEY } from "./roles-auth.decorator";
 import { HttpException } from "@nestjs/common/exceptions";
 import { HttpStatus } from "@nestjs/common/enums";
-import { Role } from "src/roles/roles.model";
+import { Role } from "../roles/roles.model";
 
 @Injectable()
 export class RolesGuard implements CanActivate {
