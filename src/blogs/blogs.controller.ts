@@ -5,6 +5,7 @@ import { Res, UseGuards } from '@nestjs/common/decorators';
 import { Response } from 'express';
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
+import { UpdateBlogDto } from './dto/update-blog.dto';
 
 @ApiTags('Blogs')
 @Controller()
@@ -39,43 +40,13 @@ export class BlogsController {
     }
 
 
-// //TODO must be get controller
-
-//     @Patch('/:id')
-//     @UseGuards(JwtAuthGuard)
-//     async updatePost(
-//         @Param('id') id: number,
-//         @Body() dto: UpdatePostDto,
-//         @Res() res: Response
-//     ) {
-//         const { userId } = res.locals
-//         const { roles } = res.locals
-//         const response = await this.postService.update(id, dto, userId, roles);
-//         res.send(response);
-//     }
-
-//     @Patch('/:id/image')
-//     @UseGuards(JwtAuthGuard)
-//     @UseInterceptors(FileInterceptor('image'))
-//     updatePostImage(
-//         @Param('id') id: number,
-//         @UploadedFile() image: any,
-//         @Res() res: Response
-//     ) {
-//         const { userId } = res.locals
-//         const { roles } = res.locals
-//         const response =  this.postService.updateImage(id, image, userId, roles);
-//         res.send(response)
-//     }
-
-//     @Delete('/:id')
-//     @UseGuards(JwtAuthGuard)
-//     async delete(@Param('id') id: number, @Res() res: Response) {
-//         const {userId} = res.locals
-//         const { roles } = res.locals
-//         const response = await this.postService.delete(id, userId, roles)
-//         res.send(response)
-//     }
+    @Post('/:id')
+    @UseGuards(JwtAuthGuard)
+    async updatePost(@Body() dto: UpdateBlogDto, @Param('id') id: number, @Res() res: Response) {
+        const { userId, roles } = res.locals
+        const response = await this.blogsService.updateBlog(id, dto, userId, roles)
+        res.send(response)
+    }
 }
 
 

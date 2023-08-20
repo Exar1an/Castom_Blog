@@ -1,0 +1,73 @@
+# flyctl launch added from .gitignore
+# compiled output
+node_modules
+
+# Logs
+**\logs
+**\*.log
+**\npm-debug.log*
+**\pnpm-debug.log*
+**\yarn-debug.log*
+**\yarn-error.log*
+**\lerna-debug.log*
+
+# OS
+**\.DS_Store
+
+# Tests
+coverage
+.nyc_output
+
+# IDEs and editors
+.idea
+**\.project
+**\.classpath
+**\.c9
+**\*.launch
+**\.settings
+**\*.sublime-workspace
+
+# IDE - VSCode
+**\.vscode\*
+!**\.vscode\settings.json
+!**\.vscode\tasks.json
+!**\.vscode\launch.json
+!**\.vscode\extensions.json
+
+# flyctl launch added from node_modules\.gitignore
+# compiled output
+node_modules\dist
+node_modules\node_modules
+
+# Logs
+node_modules\**\logs
+node_modules\**\*.log
+node_modules\**\npm-debug.log*
+node_modules\**\pnpm-debug.log*
+node_modules\**\yarn-debug.log*
+node_modules\**\yarn-error.log*
+node_modules\**\lerna-debug.log*
+
+# OS
+node_modules\**\.DS_Store
+
+# Tests
+node_modules\coverage
+node_modules\.nyc_output
+
+# IDEs and editors
+node_modules\.idea
+node_modules\**\.project
+node_modules\**\.classpath
+node_modules\**\.c9
+node_modules\**\*.launch
+node_modules\**\.settings
+node_modules\**\*.sublime-workspace
+
+# IDE - VSCode
+node_modules\**\.vscode\*
+!node_modules\**\.vscode\settings.json
+!node_modules\**\.vscode\tasks.json
+!node_modules\**\.vscode\launch.json
+!node_modules\**\.vscode\extensions.json
+fly.toml

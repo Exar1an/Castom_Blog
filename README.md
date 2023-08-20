@@ -1,73 +1,117 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+1. Скачайте репозиторий (git clone;).
+2. Cкачайте зависимости через терминал (npm i).
+3. У вас должен быть запущен сервер с postgreSQL.
+4. Создайте базу внутри pgSQL и назовите её custom-blog.
+5. Создайте файл ".development.env".
+Поместите переменные окружения из списка ниже в ".development.env" файл:
+```
+PORT=5000
+POSTGRES_HOST=localhost
+POSTGRES_USER=postgres
+POSTGRES_DB=custom-blog
+POSTGRES_PASSWORD=yourpassword
+POSTGRES_PORT=5432
+PRIVATE_KEY=secret_key_abcde
+```
+6. Запустите сервер с помощью "npm run start:dev".
+7. Сервер graphql доступен по адресу -> http://localhost:5000/graphql.
+8. Первым делом вам нужно сделать запрос для того, чтобы заполнить базу данных дефолтными ролями и первым модератором (Если они уже существуют, то ничего не произойдет лишнего, запрос просто пройдет и вернет true). Для этого для GraphhQL сделайте вот такой запрос -> query {
+    createDefaultSeeds
+} (База данных не очищается, это разовая акция для первого запуска)
+9. Сервер rest api доступен по адресу -> http://localhost:5000 + роуты.
+10. Для того чтобы узнать список query и mutation откройте в браузере http://localhost:5000/graphql -> docs || schema.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Публичный api
+1. Апи доступен по ссылке https://custom-blog.fly.dev/graphql или https://custom-blog.fly.dev для rest api.
+2. Чтобы отправить запрос откройте postman и вставьте ссылку из предыдущего пункта в строку адреса.
+3. Нажмите на вкладку Body и выбирите GraphQL, а так же выберете метод post, если он не выбран. Для rest api выберете нужный метод для запроса и вместо GraphQL выберете raw и введите тело запроса в формате json (т.е. так -> {
+    "email": "moderator@gmail.com",
+    "password": "qwerty123"
+})
+4. Отправьте запрос кнопкой "Send".
+5. После этого вам нужно пройти аутентификацию, для этого введите такок тело для graphQL: 
+mutation {
+    login(loginUserData: {email: "moderator@gmail.com", password: "qwerty123"}) {
+        token
+    }
+} (Этот юзер первый модератор и создан сидами)
+6. После этого вам придет токен и вам нужно перейти вкладку Authorization в постмане, в type выставить Bearer Token и Token вставить полученый из ответа токен.
+7. После этого вы можете взаимодействовать со всеми остальными запросами в зависимости от роли.
+8. Все rest api эндпоинты работают точно так же как и на GraphQL, но так как они не входили в задание я не включаю их в документацию. Смотрите роуты в .controller файлах.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## ТЕСТЫ.
+1. Тесты доступны в локальном репозитории в папках users и posts в файлах с окончанием *.spec.ts
+2. Нажмите run над discribe, чтобы запустить тесты или введите в консоль команду "npm run test".
+3. Результаты выполнения тестов будут доступныы в терминале.
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+# Setup Instructions
 
-```bash
-$ npm install
+1. Download the repository using the command `git clone;`.
+2. Download the required dependencies by executing `npm i` in the terminal.
+3. Ensure that your PostgreSQL server is up and running.
+4. Create a database inside pgSQL and name it `custom-blog`.
+5. Create a file named `.development.env` and place the following environment variables in it:
+```
+PORT=5000
+POSTGRES_HOST=localhost
+POSTGRES_USER=postgres
+POSTGRES_DB=custom-blog
+POSTGRES_PASSWORD=yourpassword
+POSTGRES_PORT=5432
+PRIVATE_KEY=secret_key_abcde
 ```
 
-## Running the app
+6. Launch the server using the command `npm run start:dev`.
+7. Access the GraphQL server at -> [http://localhost:5000/graphql](http://localhost:5000/graphql).
+8. As the first step, make a GraphQL query to populate the database with default roles and the initial moderator. Use the following query:
 
-```bash
-# development
-$ npm run start
+query {
+createDefaultSeeds
+}
+   This query is a one-time action for the first launch and won't clear the existing database.
 
-# watch mode
-$ npm run start:dev
+9. The REST API server is accessible at -> [http://localhost:5000](http://localhost:5000) + routes.
+10. To explore the list of available queries and mutations, open [http://localhost:5000/graphql](http://localhost:5000/graphql) in your browser -> docs || schema.
 
-# production mode
-$ npm run start:prod
-```
+# Public API
 
-## Test
+1. The API is available at the following links:
+   - GraphQL API: [https://custom-blog.fly.dev/graphql](https://custom-blog.fly.dev/graphql)
+   - REST API: [https://custom-blog.fly.dev](https://custom-blog.fly.dev)
+   
+2. To send requests, you can use Postman. Paste the link from the previous point into the address bar.
 
-```bash
-# unit tests
-$ npm run test
+3. In Postman, navigate to the Body tab, select GraphQL, and choose the post method if not selected. For REST API, choose the appropriate request method, select raw, and enter the request body in JSON format:
 
-# e2e tests
-$ npm run test:e2e
+{
+"email": "moderator@gmail.com",
+"password": "qwerty123"
+}
 
-# test coverage
-$ npm run test:cov
-```
+4. Send the request using the "Send" button.
 
-## Support
+5. After sending the request, proceed with authentication. For GraphQL, execute the following mutation:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+mutation {
+login(loginUserData: {email: "moderator@gmail.com", password: "qwerty123"}) {
+token
+  }
+}
 
-## Stay in touch
+   This user is the first moderator and is created using seeds.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+6. You will receive a token. Go to the Authorization tab in Postman, choose Bearer Token for the type, and insert the received token.
 
-## License
+7. You can now interact with various requests based on your role.
 
-Nest is [MIT licensed](LICENSE).
+8. Note that all REST API endpoints work similarly to GraphQL. However, as they are not part of the assignment, they are not included in this documentation. Refer to the routes in the `.controller` files.
+
+# Testing
+
+1. Tests are available in the local repository within the `users` and `posts` folders in files with the `.spec.ts` extension.
+
+2. To run the tests, click "run" above the `describe` section or execute the command `npm run test` in the console.
+
+3. The results of the tests will be displayed in the terminal.
