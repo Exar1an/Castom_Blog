@@ -1,2 +1,1 @@
-// look at post.service.spec.ts 
-// src/posts
+// look at src/posts/post.service.spec.ts 
